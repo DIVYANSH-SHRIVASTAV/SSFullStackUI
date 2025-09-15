@@ -6,6 +6,8 @@ import countryRoutes from "./routes/country.routes.js";
 import languageRoutes from "./routes/language.routes.js";
 import customerRoutes from "./routes/imageUpload.routes.js";
 import cors from "cors";
+import districtRoutes from "./routes/district.routes.js";
+import studentRoutes from "./routes/student.routes.js";
 const app = express();
 // serve uploaded images
 
@@ -24,7 +26,8 @@ app.use("/api/customers", customerRoutes);
 app.use("/api/states", stateRoutes);
 app.use("/api/languages", languageRoutes);
 app.use("/api/countries", countryRoutes);
-
+app.use("/api/students", studentRoutes);
+app.use("/api/districts", districtRoutes);
 app.listen(5000, () => {
   console.log("server is running on " + "http://localhost:5000");
   connectDB();});
