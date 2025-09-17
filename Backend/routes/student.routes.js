@@ -9,12 +9,30 @@ import Student from "../models/student.model.js";
 // });
 router.get("/", async (req, res) => {
   const students = await Student.find()
-    .populate("country", "name")
-    .populate("state", "name")
-    .populate("district", "name");
+    // .populate("country", "name")
+    // .populate("state", "name")
+    // .populate("district", "name");
   res.json(students);
 });
 // POST add student
+
+
+// Search endpoint
+router.get("/search", async (req, res) => {
+  try {
+    const query = req.query.q || "";
+    const students = await Student.find({
+      $or: [
+        { name: { $regex: query, $options: "i" } },
+        { email: { $regex: query, $options: "i" } }
+      ]
+    });
+    res.json(students);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 
 router.post("/", async (req, res) => {
   try {

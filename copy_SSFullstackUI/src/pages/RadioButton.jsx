@@ -248,14 +248,20 @@ const RadioButton = () => {
             {students.map((std, idx) => (
               <tr
                 key={std._id}
-                className={idx % 2 === 0 ? "bg-gray-50" : "bg-white"}
+                className={idx % 2 === 0 ? "bg-gray-200" : "bg-white"}
               >
                 <td className="p-3">{std.name}</td>
                 <td className="p-3">{std.email}</td>
                 <td className="p-3">{std.mobile}</td>
-                <td className="p-3">{std.country?.name}</td>
-                <td className="p-3">{std.state?.name}</td>
-                <td className="p-3">{std.district?.name}</td>
+                <td className="p-3">{countries.find(
+                        (c) => c._id.toString() === std.country.toString()
+                      )?.name || "Unknown"}</td>
+                <td className="p-3">{states.find(
+                        (c) => c._id.toString() === std.state.toString()
+                      )?.name || "Unknown"}</td>
+                <td className="p-3">{districts.find(
+                        (c) => c._id.toString() === std.district.toString()
+                      )?.name || "Unknown"}</td>
                 <td className="p-3">{std.gender}</td>
 
                 <td className="p-3 flex gap-2">
