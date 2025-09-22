@@ -8,6 +8,7 @@ import customerRoutes from "./routes/imageUpload.routes.js";
 import cors from "cors";
 import districtRoutes from "./routes/district.routes.js";
 import studentRoutes from "./routes/student.routes.js";
+import employeeRoutes from "./routes/employee.routes.js";
 const app = express();
 // serve uploaded images
 
@@ -24,6 +25,7 @@ app.use(cors());
 app.use("/uploads", express.static("uploads")); 
 app.use("/api/customers", customerRoutes);
 app.use("/api/states", stateRoutes);
+app.use("/api/employees", employeeRoutes);
 app.use("/api/languages", languageRoutes);
 app.use("/api/countries", countryRoutes);
 app.use("/api/students", studentRoutes);
